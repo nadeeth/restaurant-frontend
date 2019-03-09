@@ -1,32 +1,71 @@
 import React, { Component } from 'react';
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
-import Config from "./Config";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 import logo from './logo.svg';
 import './App.scss';
-import Menu from './components/menu/Menu';
+import Config from "./Config";
 
 class App extends Component {
+
   render() {
 
-    const client = new ApolloClient({
-      uri: Config.apiBaseUrl
-    });
+    if (this.props.data.loading) {
+      return <div>Loading...</div>;
+    }
 
     return (
-      <ApolloProvider client={client}>
-        <div className="app">
-          <header className="app-header">
-            <img src={logo} className="app-logo" alt="logo" />
-            <Menu />
-          </header>
-          <div className="body">
-            <h1>Body</h1>
+      <Router>
+      <div className="app">
+        <header className="app-header">
+          <img src={logo} className="app-logo" alt="logo" />
+          <div className="main-menu">
+            <nav>
+              <ul>
+                {this.renderMenu()}
+              </ul>
+            </nav>
           </div>
+        </header>
+        <div className="body">
+          {this.renderRoutes()}
         </div>
-      </ApolloProvider>
+        <footer>
+          <h5>Footer</h5>
+        </footer>
+      </div>
+      </Router>
     );
+  }
+
+  renderMenu() {
+    return this.props.data.readPages.map((page) => {
+      return (
+        <li key={page.ID}>
+          <Link to={'/' + page.URLSegment + '/'}>{page.MenuTitle}</Link>
+        </li>
+      );
+    });
+  }
+
+  renderRoutes() {
+    return this.props.data.readPages.map((page) => {
+      return (
+        <Route key={page.ID} path={'/' + page.URLSegment + '/'} component={Config.pages[page.ClassName]} />
+      );
+    });
   }
 }
 
-export default App;
+const query = gql`
+  query {
+    readPages(ShowInMenus: true) {
+      MenuTitle
+      ID
+      URLSegment
+      ClassName
+    }
+  }
+`;
+
+export default graphql(query)(App);
