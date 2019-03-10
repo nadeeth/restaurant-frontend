@@ -13,9 +13,10 @@ class HomePage extends Component {
 
         const page = this.props.data.readHomePages[0];
         const pageContent = () => ({__html: page.Content});
+        const bgStyles = {backgroundImage: 'url("http://localhost:8100' + page.Background.URL + '")'}
 
         return (
-            <div className="home-page">
+            <div className="home-page" style={bgStyles}>
                 <h1>{page.Title}</h1>
                 <div dangerouslySetInnerHTML={pageContent()} />
             </div>
@@ -30,14 +31,10 @@ const query = gql`
             Title
             Content
             Banner {
-                Title
-                Name
-                Filename
-                File
+                URL
             }
             Background {
-                Filename
-                File
+                URL
             }
         }
     }

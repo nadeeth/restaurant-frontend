@@ -30,10 +30,7 @@ const query = gql`
             Title
             Content
             Banner {
-                Title
-                Name
-                Filename
-                File
+                URL
             }
         }
     }

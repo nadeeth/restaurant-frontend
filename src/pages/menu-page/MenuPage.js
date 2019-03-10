@@ -30,10 +30,7 @@ const query = gql`
             MenuTitle
             Content
             Banner {
-                Title
-                Name
-                Filename
-                File
+                URL
             }
             MenuItems {
                 edges {
@@ -42,7 +39,7 @@ const query = gql`
                         Price
                         Description
                         Image {
-                            Filename
+                            URL
                         }
                     }
                 }

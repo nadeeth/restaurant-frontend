@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Node version : v11.9.0
 
+TODO : document how to create a new page component 
+
 ## Available Scripts
 
 In the project directory, you can run:
