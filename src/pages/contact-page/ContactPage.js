@@ -11,7 +11,7 @@ class ContactPage extends Component {
             return <div>Loading...</div>;
         }
 
-        const page = this.props.data.readPages[0];
+        const page = this.props.data.readContactPages[0];
         const pageContent = () => ({__html: page.Content});
 
         return (
@@ -25,11 +25,11 @@ class ContactPage extends Component {
 
 const query = gql`
     query($path: String) {
-        readPages(URLSegment: $path) {
-        MenuTitle
-        Title
-        Content
-        Banner {
+        readContactPages(URLSegment: $path) {
+            MenuTitle
+            Title
+            Content
+            Banner {
                 Title
                 Name
                 Filename

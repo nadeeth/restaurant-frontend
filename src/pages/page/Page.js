@@ -26,10 +26,10 @@ class Page extends Component {
 const query = gql`
     query($path: String) {
         readPages(URLSegment: $path) {
-        MenuTitle
-        Title
-        Content
-        Banner {
+            MenuTitle
+            Title
+            Content
+            Banner {
                 Title
                 Name
                 Filename

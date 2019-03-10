@@ -11,7 +11,7 @@ class HomePage extends Component {
             return <div>Loading...</div>;
         }
 
-        const page = this.props.data.readPages[0];
+        const page = this.props.data.readHomePages[0];
         const pageContent = () => ({__html: page.Content});
 
         return (
@@ -25,13 +25,17 @@ class HomePage extends Component {
 
 const query = gql`
     query($path: String) {
-        readPages(URLSegment: $path) {
-        MenuTitle
-        Title
-        Content
-        Banner {
+        readHomePages(URLSegment: $path) {
+            MenuTitle
+            Title
+            Content
+            Banner {
                 Title
                 Name
+                Filename
+                File
+            }
+            Background {
                 Filename
                 File
             }
