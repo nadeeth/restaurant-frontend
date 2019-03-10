@@ -30,9 +30,6 @@ class App extends Component {
         <div className="body">
           {this.renderRoutes()}
         </div>
-        <footer>
-          <h5>Footer</h5>
-        </footer>
       </div>
       </Router>
     );

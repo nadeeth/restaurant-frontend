@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import './MenuPage.scss';
+import Footer from '../../components/footer/Footer';
 
 class MenuPage extends Component {
 
@@ -18,6 +19,7 @@ class MenuPage extends Component {
             <div className="menu-page">
                 <h1>{page.Title}</h1>
                 <div dangerouslySetInnerHTML={pageContent()} />
+                <Footer></Footer>
             </div>
         );
     }
