@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
+import Config from "../../Config";
 import './HomePage.scss';
 
 class HomePage extends Component {
@@ -13,7 +14,7 @@ class HomePage extends Component {
 
         const page = this.props.data.readHomePages[0];
         const pageContent = () => ({__html: page.Content});
-        const bgStyles = {backgroundImage: 'url("http://localhost:8100' + page.Background.URL + '")'}
+        const bgStyles = {backgroundImage: 'url("' + Config.assetsBaseUrl + page.Background.URL + '")'}
 
         return (
             <div className="home-page" style={bgStyles}>

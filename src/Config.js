@@ -5,6 +5,7 @@ import MenuPage from './pages/menu-page/MenuPage';
 
 const Config = {
     apiBaseUrl : 'http://localhost:8100/graphql',
+    assetsBaseUrl : 'http://localhost:8100',
     pages : {
         Page,
         HomePage,
