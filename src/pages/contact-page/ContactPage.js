@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import './ContactPage.scss';
+import ContactForm from '../../components/contact-form/ContactForm';
 import Footer from '../../components/footer/Footer';
 
 class ContactPage extends Component {
@@ -19,6 +20,7 @@ class ContactPage extends Component {
             <div className="contact-page">
                 <h1>{page.Title}</h1>
                 <div dangerouslySetInnerHTML={pageContent()} />
+                <ContactForm />
                 <Footer></Footer>
             </div>
         );
