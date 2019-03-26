@@ -11,7 +11,9 @@ class ContactForm extends Component {
             name: '',
             email: '',
             phone: '',
-            messege: ''
+            messege: '',
+            success: '',
+            error: ''
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,6 +26,7 @@ class ContactForm extends Component {
     }
 
     handleSubmit(event) {
+        this.setState({success: 'Sending...'});
         event.preventDefault();
         this.props.mutate({
             variables: {
@@ -32,13 +35,29 @@ class ContactForm extends Component {
                 phone: this.state.phone,
                 message: this.state.messege
             }
-        });
+        })
+        .then(() => this.setState({success: 'Messege sent.'}))
+        .catch(() => this.setState({error: 'Error sending message. Please try again later.'}));
+    }
+
+    success() {
+        if (this.state.success) {
+            return (<h3 className="success">{this.state.success}</h3>);
+        }
+    }
+
+    error() {
+        if (this.state.error) {
+            return (<h3 className="error">{this.state.error}</h3>);
+        }
     }
 
     render() {
 
         return (
             <form onSubmit={this.handleSubmit} className="contact-form">
+                {this.success()}
+                {this.error()}
                 <label>
                     Name:
                     <input
