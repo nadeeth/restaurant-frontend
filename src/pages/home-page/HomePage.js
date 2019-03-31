@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-import Config from "../../Config";
+import Config from "../../config/Config";
 import './HomePage.scss';
 
 class HomePage extends Component {
