@@ -42,5 +42,7 @@ const query = gql`
 `;
 
 export default graphql(query, {
-    options: (props) => ({variables: { path: props.location.pathname.replace(/\/+/g, '') }})
+    options: (props) => ({variables: { 
+        path: props.location.pathname.replace(/\/+/g, '') ? props.location.pathname.replace(/\/+/g, '') : 'home'
+    }})
 })(HomePage);

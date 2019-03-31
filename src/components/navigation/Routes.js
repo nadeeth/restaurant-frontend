@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { graphql } from "react-apollo";
 import query from "../../graphql/queries/Pages";
-import Config from "../../Config";
+import Config from "../../config/Config";
 import './Routes.scss';
 
 class Routes extends Component {
@@ -13,14 +13,18 @@ class Routes extends Component {
             return <div>Loading...</div>;
         }
 
+        return (
+            <div>
+                {this.renderRoutes()}
+                <Route path='/' exact component={Config.pages.HomePage}></Route>
+            </div>
+        );
+    }
+
+    renderRoutes() {
         return this.props.data.readPages.map((page) => {
             return (
-                <div>
-                    <Route path='/'>
-                        <Redirect to="/home/" />
-                    </Route>
-                    <Route key={page.ID} path={'/' + page.URLSegment + '/'} component={Config.pages[page.ClassName]} />
-                </div>
+                <Route key={page.ID} path={'/' + page.URLSegment + '/'} component={Config.pages[page.ClassName]} />
             );
         });
     }
