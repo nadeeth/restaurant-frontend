@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { graphql } from "react-apollo";
-import query from "../../graphql/queries/Pages";
+import query from "../../graphql/queries/Navigation";
 import './Navigation.scss';
 
 class Navigation extends Component {

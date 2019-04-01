@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import { graphql } from "react-apollo";
-import query from "../../graphql/queries/Pages";
+import query from "../../graphql/queries/Navigation";
 import Config from "../../config/Config";
 import './Routes.scss';
 

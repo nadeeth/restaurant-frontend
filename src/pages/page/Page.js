@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
-import gql from "graphql-tag";
+import query from '../../graphql/queries/Pages';
 import './Page.scss';
 import Footer from '../../components/footer/Footer';
 
@@ -24,19 +24,6 @@ class Page extends Component {
         );
     }
 }
-
-const query = gql`
-    query($path: String) {
-        readPages(URLSegment: $path) {
-            MenuTitle
-            Title
-            Content
-            Banner {
-                URL
-            }
-        }
-    }
-`;
 
 export default graphql(query, {
     options: (props) => ({variables: { path: props.location.pathname.replace(/\/+/g, '') }})

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
-import gql from "graphql-tag";
 import Config from "../../config/Config";
+import query from "../../graphql/queries/HomePages";
 import './HomePage.scss';
 
 class HomePage extends Component {
@@ -24,22 +24,6 @@ class HomePage extends Component {
         );
     }
 }
-
-const query = gql`
-    query($path: String) {
-        readHomePages(URLSegment: $path) {
-            MenuTitle
-            Title
-            Content
-            Banner {
-                URL
-            }
-            Background {
-                URL
-            }
-        }
-    }
-`;
 
 export default graphql(query, {
     options: (props) => ({variables: { 

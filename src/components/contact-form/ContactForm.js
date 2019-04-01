@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
-import gql from "graphql-tag";
+import mutation from '../../graphql/mutations/CreateEnquiry';
 import './ContactForm.scss';
 
 class ContactForm extends Component {
@@ -94,22 +94,5 @@ class ContactForm extends Component {
         );
     }
 }
-
-const mutation = gql`
-    mutation($email: String!, $name: String, $phone: String, $message: String) {
-        createEnquiry (
-            Email: $email, 
-            Name: $name,
-            Phone: $phone,
-            Message: $message
-        ) {
-            ID
-            Email
-            Name
-            Phone
-            Message
-        }
-    }
-`;
 
 export default graphql(mutation)(ContactForm);

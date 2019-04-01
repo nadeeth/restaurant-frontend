@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
-import gql from "graphql-tag";
+import query from '../../graphql/queries/ContactPages';
 import './ContactPage.scss';
 import ContactForm from '../../components/contact-form/ContactForm';
 import Footer from '../../components/footer/Footer';
@@ -26,19 +26,6 @@ class ContactPage extends Component {
         );
     }
 }
-
-const query = gql`
-    query($path: String) {
-        readContactPages(URLSegment: $path) {
-            MenuTitle
-            Title
-            Content
-            Banner {
-                URL
-            }
-        }
-    }
-`;
 
 export default graphql(query, {
     options: (props) => ({variables: { path: props.location.pathname.replace(/\/+/g, '') }})

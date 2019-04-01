@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
-import gql from "graphql-tag";
 import ConfigContext from '../../config/ConfigContext';
+import query from '../../graphql/queries/MenuPages';
 import './MenuPage.scss';
 import Footer from '../../components/footer/Footer';
 
@@ -29,31 +29,6 @@ class MenuPage extends Component {
         );
     }
 }
-
-const query = gql`
-    query($path: String) {
-        readMenuPages(URLSegment: $path) {
-            Title
-            MenuTitle
-            Content
-            Banner {
-                URL
-            }
-            MenuItems {
-                edges {
-                    node {
-                        Title
-                        Price
-                        Description
-                        Image {
-                            URL
-                        }
-                    }
-                }
-            }
-        }
-    }
-`;
 
 export default graphql(query, {
     options: (props) => ({variables: { path: props.location.pathname.replace(/\/+/g, '') }})

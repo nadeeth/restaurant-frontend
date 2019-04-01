@@ -2,11 +2,14 @@ import gql from "graphql-tag";
 
 const query = gql`
     query($path: String) {
-        readPages(URLSegment: $path) {
+        readHomePages(URLSegment: $path) {
             MenuTitle
             Title
             Content
             Banner {
+                URL
+            }
+            Background {
                 URL
             }
         }
