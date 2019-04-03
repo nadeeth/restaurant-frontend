@@ -1,8 +1,27 @@
 .app {
+    width: 100%;
     .app-header {
-        .app-logo {
+        padding: 20px 3%;
+        position: absolute;
+        width: 94%;
+        height: 80px;
+        top: 0;
+        left: 0;
+        .image-logo {
             width: auto;
-            height: 80px;
+            height: 60px;
+        }
+        .text-logo {
+            font-size: 25px;
+            text-decoration: none;
+            color: #FFF;
+            font-weight: 600;
+            display: block;
+            float: left;
+            margin-top: 6px;
+        }
+        .top-nav {
+            float: right;
         }
     }
 }

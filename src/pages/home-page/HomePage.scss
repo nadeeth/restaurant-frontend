@@ -1,0 +1,14 @@
+.home-page {
+    width: 100%;
+    padding-top: 120px;
+    background-position: center;
+    background-size: cover;
+    .content {
+        padding: 1.5rem;
+        max-width: 42em;
+        margin: 12% auto auto;
+        h1 {
+            text-align: center;
+        }
+    }
+}

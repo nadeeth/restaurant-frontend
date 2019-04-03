@@ -13,13 +13,11 @@ class Navigation extends Component {
         }
 
         return (
-            <div className="main-menu">
-                <nav>
+            <nav className="top-nav">
                 <ul>
                     {this.renderMenu()}
                 </ul>
-                </nav>
-            </div>
+            </nav>
         );
     }
 

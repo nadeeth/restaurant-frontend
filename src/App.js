@@ -23,15 +23,25 @@ class App extends Component {
         <ConfigContext.Provider value={siteConfig}>
           <div className="app">
             <header className="app-header">
-              <img src={Config.assetsBaseUrl + siteConfig.Logo.URL} className="app-logo" alt="logo" />
+              {this.renderLogo(siteConfig.Logo.URL, siteConfig.Title)}
               <Navigation></Navigation>
             </header>
-            <div className="body">
-              <Routes></Routes>
-            </div>
+            <Routes></Routes>
           </div>
         </ConfigContext.Provider>
       </Router>
+    );
+  }
+
+  renderLogo(logo, title) {
+    return (
+      <a href="/">
+        {logo ? (
+          <img src={Config.assetsBaseUrl + logo} className="image-logo" alt="logo" />
+        ) : (
+          <span className="text-logo">{title}</span>
+        )}
+      </a>
     );
   }
 }

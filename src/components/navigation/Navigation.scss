@@ -1,0 +1,17 @@
+.top-nav {
+    ul {
+        li {
+            float: left;
+            list-style: none;
+            padding-left: 30px;
+            a {
+                text-decoration: none;
+                font-weight: 600;
+                color: rgba(255,255,255,0.9);
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

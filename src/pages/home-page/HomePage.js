@@ -14,12 +14,17 @@ class HomePage extends Component {
 
         const page = this.props.data.readHomePages[0];
         const pageContent = () => ({__html: page.Content});
-        const bgStyles = {backgroundImage: 'url("' + Config.assetsBaseUrl + page.Background.URL + '")'}
+        const bgStyles = {
+            backgroundImage: 'url("' + Config.assetsBaseUrl + page.Background.URL + '")',
+            height: (window.innerHeight - 120) + 'px'
+        }
 
         return (
             <div className="home-page" style={bgStyles}>
-                <h1>{page.Title}</h1>
-                <div dangerouslySetInnerHTML={pageContent()} />
+                <div className="content">
+                    <h1>{page.Title}</h1>
+                    <div dangerouslySetInnerHTML={pageContent()} />
+                </div>
             </div>
         );
     }
