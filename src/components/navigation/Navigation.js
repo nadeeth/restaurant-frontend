@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { graphql } from "react-apollo";
 import query from "../../graphql/queries/Navigation";
 import './Navigation.scss';
@@ -25,7 +25,7 @@ class Navigation extends Component {
         return this.props.data.readPages.map((page) => {
           return (
             <li key={page.ID}>
-                <Link to={'/' + page.URLSegment + '/'}>{page.MenuTitle}</Link>
+                <NavLink activeClassName="active" to={'/' + page.URLSegment + '/'}>{page.MenuTitle}</NavLink>
             </li>
           );
         });

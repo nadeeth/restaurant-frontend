@@ -7,10 +7,15 @@
             a {
                 text-decoration: none;
                 font-weight: 600;
-                color: rgba(255,255,255,0.9);
+                font-size: 17px;
+                color: rgba(255,255,255,0.7);
                 &:hover {
-                    text-decoration: underline;
+                    text-decoration: none;
                 }
+            }
+            .active {
+                color: rgba(255,255,255, 1);
+                font-weight: 700;
             }
         }
     }
