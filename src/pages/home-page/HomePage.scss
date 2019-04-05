@@ -6,9 +6,27 @@
     .content {
         padding: 1.5rem;
         max-width: 42em;
-        margin: 12% auto auto;
-        h1 {
+        margin: 8% auto auto;
+        %content_shared {
+            color: #FFFFFF;
             text-align: center;
+            text-shadow: 0px 0px 4px #000000;
+        }
+        h1 {
+            @extend %content_shared;
+        }
+        p {
+            @extend %content_shared;
+            font-size: 20px;
+            line-height: 40px;
+        }
+        a {
+            border-radius: 4px;
+            text-decoration: none;
+            padding: 8px;
+            background: #FFFFFF;
+            color: #000000;
+            text-shadow: none;
         }
     }
 }
