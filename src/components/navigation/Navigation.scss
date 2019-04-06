@@ -1,5 +1,6 @@
 .top-nav {
     ul {
+        float: left;
         li {
             float: left;
             list-style: none;
@@ -16,6 +17,18 @@
             .active {
                 color: rgba(255,255,255, 1);
                 font-weight: 700;
+            }
+        }
+    }
+    .social-links {
+        float: right;
+        padding-top: 16px;
+        margin-left: 18px;
+        opacity: 0.6;
+        a {
+            img {
+                width: 22px;
+                height: auto;
             }
         }
     }

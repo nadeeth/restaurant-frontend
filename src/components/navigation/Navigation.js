@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 import { graphql } from "react-apollo";
 import query from "../../graphql/queries/Navigation";
+import SocialLinks from "../social-links/SocialLinks";
 import './Navigation.scss';
 
 class Navigation extends Component {
@@ -17,6 +18,7 @@ class Navigation extends Component {
                 <ul>
                     {this.renderMenu()}
                 </ul>
+                <SocialLinks />
             </nav>
         );
     }

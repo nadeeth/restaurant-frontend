@@ -1,0 +1,12 @@
+.social-links {
+    a {
+        margin-right: 10px;
+        img {
+            width: 30px;
+            height: auto;
+        }
+        &:first-child {
+            margin-left: 10px;
+        }
+    }
+}

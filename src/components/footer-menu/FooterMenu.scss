@@ -8,5 +8,8 @@
         &:hover {
             text-decoration: underline;
         }
+        &:first-child {
+            padding-left: 15px;
+        }
     }
 }
