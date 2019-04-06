@@ -23,9 +23,12 @@ class Routes extends Component {
 
     renderRoutes() {
         return this.props.data.readPages.map((page) => {
-            return (
-                <Route key={page.ID} path={'/' + page.URLSegment + '/'} component={Config.pages[page.ClassName]} />
-            );
+            if (page.ShowInMenus || page.ShowInFooterMenu) {
+                return (
+                    <Route key={page.ID} path={'/' + page.URLSegment + '/'} component={Config.pages[page.ClassName]} />
+                );
+            }
+            return '';
         });
     }
 }

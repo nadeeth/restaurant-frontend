@@ -2,11 +2,13 @@ import gql from "graphql-tag";
 
 const query = gql`
   query {
-    readPages(ShowInMenus: true) {
+    readPages {
       MenuTitle
       ID
       URLSegment
       ClassName
+      ShowInMenus
+      ShowInFooterMenu
     }
   }
 `;

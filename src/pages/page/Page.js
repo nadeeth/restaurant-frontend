@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import query from '../../graphql/queries/Pages';
-import './Page.scss';
 import Footer from '../../components/footer/Footer';
+import PageBanner from '../../components/page-banner/PageBanner';
+import './Page.scss';
 
 class Page extends Component {
 
@@ -17,8 +18,11 @@ class Page extends Component {
 
         return (
             <div className="page">
-                <h1>{page.Title}</h1>
-                <div dangerouslySetInnerHTML={pageContent()} />
+                <PageBanner backgroundUrl={page.Banner.URL} bannerTitle={page.MenuTitle}></PageBanner>
+                <div className="page-body">
+                    <h1>{page.Title}</h1>
+                    <div dangerouslySetInnerHTML={pageContent()} />
+                </div>
                 <Footer></Footer>
             </div>
         );

@@ -23,11 +23,14 @@ class Navigation extends Component {
 
     renderMenu() {
         return this.props.data.readPages.map((page) => {
-          return (
-            <li key={page.ID}>
-                <NavLink activeClassName="active" to={'/' + page.URLSegment + '/'}>{page.MenuTitle}</NavLink>
-            </li>
-          );
+            if (page.ShowInMenus) {
+                return (
+                    <li key={page.ID}>
+                        <NavLink activeClassName="active" to={'/' + page.URLSegment + '/'}>{page.MenuTitle}</NavLink>
+                    </li>
+                );
+            }
+            return '';
         });
     }
 }

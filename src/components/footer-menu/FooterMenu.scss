@@ -1,0 +1,12 @@
+.footer-menu {
+    a {
+        padding-right: 15px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        color: #FFFF;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

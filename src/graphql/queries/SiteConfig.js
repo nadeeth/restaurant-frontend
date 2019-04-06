@@ -10,6 +10,10 @@ const query = gql`
             }
             OrderTax
             OrderDiscount
+            FooterText
+            Facebook
+            Instagram
+            Twitter
         }
     }
 `;
