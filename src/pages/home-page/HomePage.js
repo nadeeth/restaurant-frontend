@@ -16,7 +16,7 @@ class HomePage extends Component {
         const pageContent = () => ({__html: page.Content});
         const bgStyles = {
             backgroundImage: 'url("' + Config.assetsBaseUrl + page.Background.URL + '")',
-            height: (window.innerHeight - 120) + 'px'
+            height: window.innerHeight + 'px'
         }
 
         return (
