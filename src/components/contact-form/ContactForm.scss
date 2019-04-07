@@ -1,0 +1,46 @@
+.contact-form {
+    .info { grid-area: info; }
+    .name { grid-area: name; }
+    .phone { grid-area: phone; }
+    .email { grid-area: email; }
+    .message { grid-area: message; }
+    .action { grid-area: action; }
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+    'info info'
+    'name phone'
+    'email email'
+    'message message'
+    'action action';
+    grid-gap: 18px;
+    label {
+        width: 100%;
+        margin-bottom: 8px;
+        display: block;
+    }
+    %input_shared {
+        width: 100%;
+        display: block;
+        border-radius: 6px;
+        border: 0.5px solid #888;
+    }
+    input {
+        @extend %input_shared;
+        height: 36px;
+    }
+    textarea {
+        @extend %input_shared;
+        height: 80px;
+    }
+    .action {
+        input {
+            color: #FFF;
+            font-weight: 600;
+            background: #000;
+            font-size: 17px;
+            width: 200px;
+            margin: auto;
+        }
+    }
+}

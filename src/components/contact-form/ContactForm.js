@@ -56,40 +56,47 @@ class ContactForm extends Component {
 
         return (
             <form onSubmit={this.handleSubmit} className="contact-form">
-                {this.success()}
-                {this.error()}
-                <label>
-                    Name:
+                <div className="info">
+                    {this.success()}
+                    {this.error()}
+                </div>
+                <div className="name">
+                    <label for="name">Name</label>
                     <input
                         name="name"
+                        id="name"
                         type="text"
                         required
                         value={this.state.name}
                         onChange={this.handleInputChange} />
-                </label>
-                <label>
-                    Email:
-                    <input
-                        name="email"
-                        type="email"
-                        required
-                        value={this.state.email}
-                        onChange={this.handleInputChange} />
-                </label>
-                <label>
-                    Phone:
+                </div>
+                <div className="phone">
+                    <label for="phone">Phone</label>
                     <input
                         name="phone"
+                        id="phone"
                         type="tel"
                         required
                         value={this.state.phone}
                         onChange={this.handleInputChange} />
-                </label>
-                <label>
-                    Messege:
-                    <textarea name="messege" required value={this.state.messege} onChange={this.handleInputChange} />
-                </label>
-                <input type="submit" value="Submit" />
+                </div>
+                <div className="email">
+                    <label for="email">Email</label>
+                    <input
+                        name="email"
+                        id="email"
+                        type="email"
+                        required
+                        value={this.state.email}
+                        onChange={this.handleInputChange} />
+                </div>
+                <div className="message">
+                    <label for="message">Messege</label>
+                    <textarea name="messege" id="messege" required value={this.state.messege} onChange={this.handleInputChange} />
+                </div>
+                <div className="action">
+                    <input type="submit" value="Submit" />
+                </div>
             </form>
         );
     }

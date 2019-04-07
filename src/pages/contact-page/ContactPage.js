@@ -20,9 +20,11 @@ class ContactPage extends Component {
         return (
             <div className="contact-page">
                 <PageBanner backgroundUrl={page.Banner.URL} bannerTitle={page.MenuTitle}></PageBanner>
-                <h1>{page.Title}</h1>
-                <div dangerouslySetInnerHTML={pageContent()} />
-                <ContactForm />
+                <div className="page-body">
+                    <h1>{page.Title}</h1>
+                    <div className="content" dangerouslySetInnerHTML={pageContent()} />
+                    <ContactForm />
+                </div>
                 <Footer></Footer>
             </div>
         );
