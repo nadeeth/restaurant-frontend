@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import { graphql } from "react-apollo";
 import query from "../../graphql/queries/Navigation";
+import Loading from '../../components/loading/Loading';
 import Config from "../../config/Config";
 import './Routes.scss';
 
@@ -10,7 +11,7 @@ class Routes extends Component {
     render() {
 
         if (this.props.data.loading) {
-            return <div>Loading...</div>;
+            return <Loading/>;
         }
 
         return (

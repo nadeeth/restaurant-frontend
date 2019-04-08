@@ -1,0 +1,11 @@
+.loading {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    img {
+        display: inline-block;
+        vertical-align: middle;
+        // height: 100%;
+    }
+}

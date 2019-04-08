@@ -3,6 +3,7 @@ import { graphql } from "react-apollo";
 import query from '../../graphql/queries/Pages';
 import Footer from '../../components/footer/Footer';
 import PageBanner from '../../components/page-banner/PageBanner';
+import Loading from '../../components/loading/Loading';
 import './Page.scss';
 
 class Page extends Component {
@@ -10,7 +11,7 @@ class Page extends Component {
     render() {
 
         if (this.props.data.loading) {
-            return <div>Loading...</div>;
+            return <Loading/>;
         }
 
         const page = this.props.data.readPages[0];

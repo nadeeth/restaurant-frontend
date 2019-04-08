@@ -3,6 +3,7 @@ import { graphql } from "react-apollo";
 import query from '../../graphql/queries/ContactPages';
 import PageBanner from '../../components/page-banner/PageBanner';
 import ContactForm from '../../components/contact-form/ContactForm';
+import Loading from '../../components/loading/Loading';
 import Footer from '../../components/footer/Footer';
 import './ContactPage.scss';
 
@@ -11,7 +12,7 @@ class ContactPage extends Component {
     render() {
 
         if (this.props.data.loading) {
-            return <div>Loading...</div>;
+            return <Loading/>;
         }
 
         const page = this.props.data.readContactPages[0];

@@ -6,6 +6,7 @@ import ConfigContext from "./config/ConfigContext";
 import query from "./graphql/queries/SiteConfig";
 import Navigation from "./components/navigation/Navigation";
 import Routes from "./components/navigation/Routes";
+import Loading from './components/loading/Loading';
 import './App.scss';
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
   render() {
 
     if (this.props.data.loading) {
-      return <div>Loading...</div>;
+      return <Loading />;
     }
 
     const siteConfig = this.props.data.readSiteConfig[0];

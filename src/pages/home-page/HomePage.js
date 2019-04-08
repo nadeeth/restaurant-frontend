@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import Config from "../../config/Config";
 import query from "../../graphql/queries/HomePages";
+import Loading from '../../components/loading/Loading';
 import './HomePage.scss';
 
 class HomePage extends Component {
@@ -9,7 +10,7 @@ class HomePage extends Component {
     render() {
 
         if (this.props.data.loading) {
-            return <div>Loading...</div>;
+            return <Loading/>;
         }
 
         const page = this.props.data.readHomePages[0];

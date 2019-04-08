@@ -3,6 +3,7 @@ import { graphql } from "react-apollo";
 import ConfigContext from '../../config/ConfigContext';
 import query from '../../graphql/queries/MenuPages';
 import PageBanner from '../../components/page-banner/PageBanner';
+import Loading from '../../components/loading/Loading';
 import Footer from '../../components/footer/Footer';
 import './MenuPage.scss';
 
@@ -13,7 +14,7 @@ class MenuPage extends Component {
     render() {
 
         if (this.props.data.loading) {
-            return <div>Loading...</div>;
+            return <Loading/>;
         }
 
         console.log(this.context);//TODO: remove this line

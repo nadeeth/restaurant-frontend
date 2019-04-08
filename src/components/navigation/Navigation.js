@@ -10,7 +10,8 @@ class Navigation extends Component {
     render() {
 
         if (this.props.data.loading) {
-            return <div>Loading...</div>;
+            console.log('Loading navigation...');
+            return '';
         }
 
         return (
