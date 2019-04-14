@@ -1,36 +1,99 @@
-.top-nav {
-    ul {
-        margin-top: 7px;
-        float: left;
-        li {
+.top-nav-container {
+    .top-nav {
+        ul {
+            margin-top: 7px;
             float: left;
-            list-style: none;
-            padding-left: 30px;
-            a {
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 17px;
-                color: rgba(255,255,255,0.7);
-                &:hover {
+            li {
+                float: left;
+                list-style: none;
+                padding-left: 30px;
+                a {
                     text-decoration: none;
+                    font-weight: 600;
+                    font-size: 17px;
+                    color: rgba(255,255,255,0.7);
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+                .active {
+                    color: rgba(255,255,255, 1);
+                    font-weight: 700;
                 }
             }
-            .active {
-                color: rgba(255,255,255, 1);
-                font-weight: 700;
+        }
+        .social-links {
+            float: right;
+            margin-top: 7px;
+            margin-left: 18px;
+            opacity: 0.6;
+            a {
+                img {
+                    width: 22px;
+                    height: auto;
+                }
             }
         }
     }
-    .social-links {
-        float: right;
-        margin-top: 7px;
-        margin-left: 18px;
-        opacity: 0.6;
-        a {
-            img {
-                width: 22px;
-                height: auto;
+    .open {
+        display: none;
+    }
+    .close {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .top-nav-container {
+        .top-nav {
+            background: rgba(0, 0, 0, 0.9);
+            width: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 120px 20px;
+            ul {
+                float: none;
+                li {
+                    float: none;
+                    padding: 18px 12px;
+                    border-bottom: 0.5px solid #555555;
+                    a {
+                        font-size: 24px;
+                        font-weight: 400;
+                        display: block;
+                    }
+                    &:first-child {
+                        border-top: 0.5px solid #555555;
+                    }
+                }
             }
+            .social-links {
+                float: none;
+                margin-top: 80px;
+                text-align: left;
+                a {
+                    margin-right: 18px;
+                    img {
+                        width: 40px;
+                    }
+                }
+            }
+        }
+        %menuShowHide_shared {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 46px;
+            display: block;
+        }
+        .close {
+            @extend %menuShowHide_shared;
+            opacity: 0.6;
+        }
+        .open {
+            @extend %menuShowHide_shared;
         }
     }
 }

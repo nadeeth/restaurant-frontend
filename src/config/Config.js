@@ -11,7 +11,8 @@ const Config = {
         HomePage,
         ContactPage,
         MenuPage
-    }
+    },
+    isMobile : window.innerWidth <= 760
 }
 
 export default Config;

@@ -3,9 +3,19 @@ import { NavLink } from "react-router-dom";
 import { graphql } from "react-apollo";
 import query from "../../graphql/queries/Navigation";
 import SocialLinks from "../social-links/SocialLinks";
+import Hamburger from "../../images/hamburger.svg";
+import Close from "../../images/close.svg";
+import Config from "../../config/Config";
 import './Navigation.scss';
 
 class Navigation extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            showMenu: Config.isMobile ? false : true
+        }
+    }
 
     render() {
 
@@ -14,13 +24,25 @@ class Navigation extends Component {
             return '';
         }
 
+        const displayToggle = {
+            display: this.state.showMenu ? 'block' : 'none'
+        }
+
+        const displayHamburger = {
+            display: this.state.showMenu ? 'none' : 'block'
+        }
+
         return (
-            <nav className="top-nav">
-                <ul>
-                    {this.renderMenu()}
-                </ul>
-                <SocialLinks />
-            </nav>
+            <div className="top-nav-container">
+                <nav className="top-nav" style={displayToggle}>
+                    <img src={Close} onClick={() => this.showMenu(false)} className="close" alt="close" />
+                    <ul>
+                        {this.renderMenu()}
+                    </ul>
+                    <SocialLinks />
+                </nav>
+                <img style={displayHamburger} src={Hamburger} onClick={() => this.showMenu(true)} className="open" alt="open" />
+            </div>
         );
     }
 
@@ -29,12 +51,18 @@ class Navigation extends Component {
             if (page.ShowInMenus) {
                 return (
                     <li key={page.ID}>
-                        <NavLink activeClassName="active" to={'/' + page.URLSegment + '/'}>{page.MenuTitle}</NavLink>
+                        <NavLink onClick={() => this.showMenu(false)} activeClassName="active" to={'/' + page.URLSegment + '/'}>{page.MenuTitle}</NavLink>
                     </li>
                 );
             }
             return '';
         });
+    }
+
+    showMenu(bool) {
+        if (Config.isMobile) {
+            this.setState({showMenu : bool });
+        }
     }
 }
 
