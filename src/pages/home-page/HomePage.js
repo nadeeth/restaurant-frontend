@@ -29,6 +29,14 @@ class HomePage extends Component {
             </div>
         );
     }
+
+    componentDidMount() {
+        window.addEventListener("resize", this.onResize.bind(this));
+    }
+
+    onResize() {
+        this.forceUpdate();
+    }
 }
 
 export default graphql(query, {
