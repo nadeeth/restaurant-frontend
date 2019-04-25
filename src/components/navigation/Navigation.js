@@ -13,7 +13,7 @@ class Navigation extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showMenu: Config.isMobile ? false : true
+            showMenu: Config.isMobile() ? false : true
         }
     }
 
@@ -60,9 +60,22 @@ class Navigation extends Component {
     }
 
     showMenu(bool) {
-        if (Config.isMobile) {
+        if (Config.isMobile()) {
             this.setState({showMenu : bool });
+        } else {
+            this.setState({showMenu: true});
         }
+    }
+
+    componentDidMount() {
+        window.addEventListener("resize", this.onResize.bind(this));
+    }
+
+    onResize() {
+        this.setState({
+            showMenu: Config.isMobile() ? false : true
+        });
+        this.forceUpdate();
     }
 }
 

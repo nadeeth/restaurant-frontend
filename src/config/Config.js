@@ -12,7 +12,7 @@ const Config = {
         ContactPage,
         MenuPage
     },
-    isMobile : window.innerWidth <= 760
+    isMobile : () => window.innerWidth <= 760
 }
 
 export default Config;
