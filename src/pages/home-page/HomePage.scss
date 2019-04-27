@@ -5,8 +5,8 @@
     background-size: cover;
     background-color: #888;
     .content {
-        padding: 1.5rem;
-        max-width: 42em;
+        padding: 1rem;
+        max-width: 42rem;
         margin: 14% auto auto;
         %content_shared {
             color: #FFFFFF;
@@ -15,19 +15,18 @@
         }
         h1 {
             @extend %content_shared;
-            font-size: 2.5em;
+            font-size: 2.5rem;
         }
         p {
             @extend %content_shared;
-            font-size: 20px;
-            line-height: 2rem;
             font-size: 1.25rem;
+            line-height: 2rem;
             font-weight: 400;
         }
         a {
             border-radius: 4px;
             text-decoration: none;
-            padding: 8px;
+            padding: .2rem .5rem;
             background: #FFFFFF;
             color: #000000;
             text-shadow: none;

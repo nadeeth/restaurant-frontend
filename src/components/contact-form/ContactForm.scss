@@ -13,10 +13,10 @@
     'email email'
     'message message'
     'action action';
-    grid-gap: 18px;
+    grid-gap: 1.8rem;
     label {
         width: 100%;
-        margin-bottom: 8px;
+        margin-bottom: .8rem;
         display: block;
     }
     %input_shared {
@@ -27,18 +27,18 @@
     }
     input {
         @extend %input_shared;
-        height: 36px;
+        height: 2.6rem;
     }
     textarea {
         @extend %input_shared;
-        height: 120px;
+        height: 12rem;
     }
     .action {
         input {
             color: #FFF;
             font-weight: 600;
             background: #000;
-            font-size: 17px;
+            font-size: 1.7rem;
             width: 200px;
             margin: auto;
         }
