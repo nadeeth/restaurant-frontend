@@ -14,6 +14,7 @@ const query = gql`
             Facebook
             Instagram
             Twitter
+            YouTube
         }
     }
 `;

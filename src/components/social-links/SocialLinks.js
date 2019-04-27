@@ -3,6 +3,7 @@ import ConfigContext from '../../config/ConfigContext';
 import Facebook from '../../images/facebook.svg';
 import Twitter from '../../images/twitter.svg';
 import Instagram from '../../images/instagram.svg';
+import YouTube from '../../images/youtube.svg';
 import './SocialLinks.scss';
 
 class SocialLinks extends Component {
@@ -20,6 +21,9 @@ class SocialLinks extends Component {
                 }
                 {this.context.Instagram &&
                     <a href={this.context.Instagram} target="_blank" rel="noopener noreferrer"><img src={Instagram} alt="Instagram"/></a>
+                }
+                {this.context.YouTube &&
+                    <a href={this.context.YouTube} target="_blank" rel="noopener noreferrer"><img src={YouTube} alt="YouTube"/></a>
                 }
             </div>
         );
