@@ -1,3 +1,5 @@
+@import '../../config/SassVariables.scss';
+
 .contact-form {
     .info { grid-area: info; }
     .name { grid-area: name; }
@@ -35,9 +37,9 @@
     }
     .action {
         input {
-            color: #FFF;
+            color: $primary_color;
             font-weight: 600;
-            background: #000;
+            background: $secondary_color;
             font-size: 1.2rem;
             width: 200px;
             margin: auto;

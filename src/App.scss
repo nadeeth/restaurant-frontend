@@ -1,3 +1,5 @@
+@import './config/SassVariables.scss';
+
 .app {
     width: 100%;
     .app-header {
@@ -16,7 +18,7 @@
         .text-logo {
             font-size: 25px;
             text-decoration: none;
-            color: #FFF;
+            color: $text_color_on_image_backgrounds;
             font-weight: 600;
             display: block;
             float: left;

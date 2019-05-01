@@ -1,8 +1,10 @@
+@import '../../config/SassVariables.scss';
+
 footer {
     width: 100%;
     text-align: center;
-    background-color: #000;
-    color: #FFF;
+    background-color: $secondary_color;
+    color: $primary_color;
     min-height: 120px;
     padding: 2.5rem 0;
     margin-top: 60px;

@@ -1,3 +1,5 @@
+@import '../../config/SassVariables.scss';
+
 .page-banner {
     width: 100%;
     padding-top: 120px;
@@ -8,7 +10,7 @@
     text-align: center;
     h2 {
         text-align: center;
-        color: #fff;
+        color: $text_color_on_image_backgrounds;
         font-weight: 700;
         font-size: 2rem;
         margin: 2.4rem 0 .5rem 0;
@@ -20,9 +22,9 @@
         padding: .5rem 1.5rem;
         border-radius: .5rem;
         font-size: 1rem;
-        color: #aaa;
+        color: darken($text_color_on_image_backgrounds, 25%);
         a {
-            color: #fff;
+            color: $text_color_on_image_backgrounds;
             text-decoration: none;
         }
     }
