@@ -1,8 +1,14 @@
+@import '../../config/SassVariables.scss';
+
 .loading {
     display:flex;
     justify-content: center;
     align-items: center;
     width:100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: $primary_color;
     img {
         display: inline-block;
         vertical-align: middle;
