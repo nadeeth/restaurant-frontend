@@ -33,5 +33,25 @@
             color: $secondary_color;
             text-shadow: none;
         }
+        .promo-buttons {
+            margin-top: 22px;
+            text-align: center;
+            a {
+                background: $primary_color;
+                color: rgba($secondary_color, 0.8);
+                margin-right: 12px;
+                padding: 12px 22px;
+                font-weight: 700;
+            }
+            .ghost {
+                background: transparent;
+                color: $primary_color;
+                margin-right: 12px;
+                padding: 9px 18px;
+                font-weight: 700;
+                border: 3px solid $primary_color;
+                text-shadow: 0px 0px 2px #000000;
+            }
+        }
     }
 }

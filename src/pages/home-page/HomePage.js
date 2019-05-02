@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import { graphql } from "react-apollo";
 import Config from "../../config/Config";
 import query from "../../graphql/queries/HomePages";
@@ -25,6 +26,10 @@ class HomePage extends Component {
                 <div className="content">
                     <h1>{page.Title}</h1>
                     <div dangerouslySetInnerHTML={pageContent()} />
+                    <div className="promo-buttons">
+                        <Link to={'/menu/'}>Order Now</Link>
+                        <Link to={'/contact-us/'} className="ghost">Book a Table</Link>
+                    </div>
                 </div>
             </div>
         );
