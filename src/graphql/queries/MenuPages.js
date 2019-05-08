@@ -12,6 +12,7 @@ const query = gql`
             MenuItems {
                 edges {
                     node {
+                        ID
                         Title
                         Price
                         Description
