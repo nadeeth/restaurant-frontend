@@ -18,11 +18,11 @@ class MenuPage extends Component {
         this.state = {
             order: {
                 ID: null,
-                Email: null,
-                Name: null,
-                Phone: null,
-                PickUpTime: null,
-                Message: null,
+                Email: '',
+                Name: '',
+                Phone: '',
+                PickUpTime: 0,
+                Message: '',
                 Status: null,
                 Total: null,
                 Tax: null,
@@ -30,6 +30,78 @@ class MenuPage extends Component {
                 NetTotal: null,
                 items: []
             }
+        }
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInputChange(event) {
+        const order = this.state.order;
+        order[event.target.name] = event.target.value;
+        this.setState({order});
+    }
+
+    handleSubmit(event) {
+        this.setState({success: 'Sending...'});
+        event.preventDefault();
+        Config.client.mutate({
+            mutation: gql`
+                mutation($ID: Int!, $Email: String, $Name: String, $Phone: String!, $PickUpTime: Int, $Message: String, $Status: String, $Total: Float, $Tax: Float, $Discount: Float, $NetTotal: Float) {
+                    createOrder(
+                        ID: $ID
+                        Email: $Email,
+                        Name: $Name,
+                        Phone: $Phone,
+                        PickUpTime: $PickUpTime,
+                        Message: $Message,
+                        Status: $Status,
+                        Total: $Total,
+                        Tax: $Tax,
+                        Discount: $Discount,
+                        NetTotal: $NetTotal
+                    ) {
+                        ID
+                        Email
+                        Name
+                        Phone
+                        PickUpTime
+                        Message
+                        Status
+                        Total
+                        Tax
+                        Discount
+                        NetTotal
+                    }
+                }
+            `,
+            variables: {
+                ID: this.state.order.ID,
+                Email: this.state.order.Email,
+                Name: this.state.order.Name,
+                Phone: this.state.order.Phone,
+                PickUpTime: this.state.order.PickUpTime,
+                Message: this.state.order.Message,
+                Status: 'CustomerConfirmed',
+                Total: this.state.order.Total, 
+                Tax: this.state.order.Tax,
+                Discount: this.state.order.Discount,
+                NetTotal: this.state.order.NetTotal
+            }
+        })
+        .then(() => this.setState({success: 'Order placed.'}))
+        .catch(() => this.setState({error: 'Error placing order. Please try again later.'}));
+    }
+
+    success() {
+        if (this.state.success) {
+            return (<h3 className="success">{this.state.success}</h3>);
+        }
+    }
+
+    error() {
+        if (this.state.error) {
+            return (<h3 className="error">{this.state.error}</h3>);
         }
     }
 
@@ -49,7 +121,52 @@ class MenuPage extends Component {
                 <PageBanner backgroundUrl={page.Banner.URL} bannerTitle={page.MenuTitle}></PageBanner>
                 <h1>{page.Title}</h1>
                 <div dangerouslySetInnerHTML={pageContent()} />
-                <div>Order<br/>{this.renderOrderItems()}</div>
+                <div className="order">
+                    {this.renderOrderItems()}
+                    <form onSubmit={this.handleSubmit} className="order-form">
+                        <div className="info">
+                            {this.success()}
+                            {this.error()}
+                        </div>
+                        <div className="name">
+                            <label htmlFor="Name">Name</label>
+                            <input
+                                name="Name"
+                                id="Name"
+                                type="text"
+                                required
+                                value={this.state.order.Name}
+                                onChange={this.handleInputChange} />
+                        </div>
+                        <div className="phone">
+                            <label htmlFor="Phone">Phone</label>
+                            <input
+                                name="Phone"
+                                id="Phone"
+                                type="tel"
+                                required
+                                value={this.state.order.Phone}
+                                onChange={this.handleInputChange} />
+                        </div>
+                        <div className="email">
+                            <label htmlFor="Email">Email</label>
+                            <input
+                                name="Email"
+                                id="Email"
+                                type="email"
+                                required
+                                value={this.state.order.Email}
+                                onChange={this.handleInputChange} />
+                        </div>
+                        <div className="message">
+                            <label htmlFor="Message">Messege</label>
+                            <textarea name="Message" id="Message" required value={this.state.order.Message} onChange={this.handleInputChange} />
+                        </div>
+                        <div className="action">
+                            <input type="submit" value="Submit" />
+                        </div>
+                    </form>
+                </div>
                 <div className="menu">
                     {this.renderMenuItems(page.MenuItems.edges)}
                 </div>
