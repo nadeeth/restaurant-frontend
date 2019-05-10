@@ -43,8 +43,13 @@ class MenuPage extends Component {
     }
 
     handleSubmit(event) {
-        this.setState({success: 'Sending...'});
         event.preventDefault();
+        this.setState({error: ''});
+        if (!this.state.order.items.length) {
+            this.setState({error: 'Please add some menu items to your order.'});
+            return;
+        }
+        this.setState({success: 'Sending...'});
         Config.client.mutate({
             mutation: gql`
                 mutation($ID: Int!, $Email: String, $Name: String, $Phone: String!, $PickUpTime: Int, $Message: String, $Status: String, $Total: Float, $Tax: Float, $Discount: Float, $NetTotal: Float) {
@@ -163,7 +168,7 @@ class MenuPage extends Component {
                             <textarea name="Message" id="Message" required value={this.state.order.Message} onChange={this.handleInputChange} />
                         </div>
                         <div className="action">
-                            <input type="submit" value="Submit" />
+                            <input type="submit" value="Confirm Order" />
                         </div>
                     </form>
                 </div>
@@ -192,7 +197,9 @@ class MenuPage extends Component {
                     <h5>{item.Title}</h5>
                     <p>{item.Description}</p>
                     <span>{item.Price}</span><span onClick={() => this.addItem(item)}>+</span>
+                    {item.Image.URL && 
                     <img src={Config.assetsBaseUrl + item.Image.URL} alt={item.Title} />
+                    }
                 </div>
             );
         });
