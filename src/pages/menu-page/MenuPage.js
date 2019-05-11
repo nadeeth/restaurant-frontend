@@ -165,7 +165,7 @@ class MenuPage extends Component {
                         </div>
                         <div className="message">
                             <label htmlFor="Message">Messege</label>
-                            <textarea name="Message" id="Message" required value={this.state.order.Message} onChange={this.handleInputChange} />
+                            <textarea name="Message" id="Message" value={this.state.order.Message} onChange={this.handleInputChange} />
                         </div>
                         <div className="action">
                             <input type="submit" value="Confirm Order" />
