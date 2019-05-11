@@ -7,11 +7,16 @@ import query from "./graphql/queries/SiteConfig";
 import Navigation from "./components/navigation/Navigation";
 import Routes from "./components/navigation/Routes";
 import Loading from './components/loading/Loading';
+import Outage from './components/outage/Outage';
 import './App.scss';
 
 class App extends Component {
 
   render() {
+
+    if (this.props.data.error) {
+      return <Outage />;
+    }
 
     if (this.props.data.loading) {
       return <Loading />;

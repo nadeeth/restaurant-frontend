@@ -1,0 +1,17 @@
+@import '../../config/SassVariables.scss';
+
+.outage {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: $primary_color;
+    color: $secondary_color;
+    padding: 90px;
+    h1 {
+        margin: 0 12px 0 0;
+    }
+}
