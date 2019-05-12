@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
+import DatePicker from "react-datepicker";
+import moment from 'moment';
+import "react-datepicker/dist/react-datepicker.css";
 import Config from '../../config/Config';
 import ConfigContext from '../../config/ConfigContext';
 import CreateOrderItemMutation from '../../graphql/mutations/CreateOrderItem';
@@ -17,6 +20,7 @@ class OrderForm extends Component {
             order: this.props.order
         }
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -61,6 +65,21 @@ class OrderForm extends Component {
                             required
                             value={this.state.order.Email}
                             onChange={this.handleInputChange} />
+                    </div>
+                    <div className="pickup-time">
+                        <label htmlFor="PickUpTime">Pick up time</label>
+                        <DatePicker
+                            name="PickUpTime"
+                            id="PickUpTime"
+                            selected={this.state.order.PickUpTime}
+                            onChange={this.handleDateChange}
+                            showTimeSelect
+                            timeFormat="h:mm aa"
+                            dateFormat="MMMM d, yyyy h:mm aa"
+                            minDate={new Date()}
+                            withPortal
+                            placeholderText="Click to select pickup time"
+                        />
                     </div>
                     <div className="message">
                         <label htmlFor="Message">Messege</label>
@@ -118,6 +137,13 @@ class OrderForm extends Component {
         this.setState({order});
     }
 
+    handleDateChange(date) {
+        console.log(moment.parseZone(date).format("dddd, MMMM Do YYYY, h:mm:ss a"));
+        const order = this.state.order;
+        order.PickUpTime = date;
+        this.setState({order});
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         this.setState({error: ''});
@@ -132,7 +158,7 @@ class OrderForm extends Component {
                 Email: this.state.order.Email,
                 Name: this.state.order.Name,
                 Phone: this.state.order.Phone,
-                PickUpTime: this.state.order.PickUpTime,
+                PickUpTime: moment.parseZone(this.state.order.PickUpTime).format("dddd, MMMM Do YYYY, h:mm:ss a"),
                 Message: this.state.order.Message,
                 Status: 'CustomerConfirmed',
                 Total: this.state.order.Total, 

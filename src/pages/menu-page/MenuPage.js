@@ -18,7 +18,7 @@ class MenuPage extends Component {
                 Email: '',
                 Name: '',
                 Phone: '',
-                PickUpTime: 0,
+                PickUpTime: new Date(),
                 Message: '',
                 Status: null,
                 Total: null,
