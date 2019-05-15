@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Config from '../../config/Config';
-import orderItemMutation from '../../graphql/mutations/CreateOrderItem';
-import orderMutation from '../../graphql/mutations/CreateOrder';
 import './MenuItem.scss';
 
 class MenuItem extends Component {
@@ -29,52 +27,26 @@ class MenuItem extends Component {
         );
     }
 
-    async addItem(item) {
-
-        if (!this.state.order.ID) {
-            await this.createOrder();
-        }
+    addItem(item) {
 
         let found = false;
-        this.state.order.items.forEach(async (i) => {
-            if (i.Title === item.Title && i.Price === parseFloat(item.Price)) {
+        this.state.order.items.forEach((i) => {
+            if (i.Title === item.Title && i.Price === item.Price) {
                 found = i;
             }
         });
         if (found) {
-            const qty = found.Qty + 1;
-            const data = await this.createOrderItem({ ID: found.ID, OrderID: found.OrderID, Title: found.Title, Price: found.Price, Qty: qty });
-            found.Qty = data.createOrderItem.Qty;
+            found.Qty++;
         }
         if (!found) {
-            const data = await this.createOrderItem({ ID: 0, OrderID: this.state.order.ID, Title: item.Title, Price: item.Price, Qty: 1 });
             this.state.order.items.push({
-                ID : data.createOrderItem.ID,
-                OrderID: data.createOrderItem.OrderID,
-                Title: data.createOrderItem.Title,
-                Price: data.createOrderItem.Price,
-                Qty: data.createOrderItem.Qty
+                Title: item.Title,
+                Price: item.Price,
+                Qty: 1
             });
         }
         this.setState({order: this.state.order});
         this.props.onChange(this.state.order);
-    }
-
-    async createOrder() {
-        const { data } = await Config.client.mutate({
-            mutation : orderMutation,
-            variables: { ID: 0, Email: '', Name: '', Phone: '', PickUpTime: 0, Message: '', Status: 'Created', Total: 0, Tax: 0, Discount: 0, NetTotal: 0}
-        })
-        this.state.order.ID = data.createOrder.ID;
-        this.setState({order: this.state.order});
-    }
-
-    async createOrderItem(variables) {
-        const { data } = await Config.client.mutate({
-            mutation: orderItemMutation,
-            variables: variables
-        });
-        return data;
     }
 }
 

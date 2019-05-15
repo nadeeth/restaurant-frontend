@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 const mutation = gql`
-mutation($ID: Int!, $Email: String, $Name: String, $Phone: String!, $PickUpTime: String, $Message: String, $Status: String, $Total: Float, $Tax: Float, $Discount: Float, $NetTotal: Float) {
+mutation($ID: Int!, $Email: String, $Name: String, $Phone: String!, $PickUpTime: String, $Message: String, $Status: String, $Total: Float, $Tax: Float, $Discount: Float, $NetTotal: Float, $OrderItems: String) {
     createOrder(
         ID: $ID
         Email: $Email,
@@ -13,7 +13,8 @@ mutation($ID: Int!, $Email: String, $Name: String, $Phone: String!, $PickUpTime:
         Total: $Total,
         Tax: $Tax,
         Discount: $Discount,
-        NetTotal: $NetTotal
+        NetTotal: $NetTotal,
+        OrderItems: $OrderItems
     ) {
         ID
         Email

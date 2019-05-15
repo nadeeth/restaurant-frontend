@@ -3,10 +3,7 @@ import { graphql } from "react-apollo";
 import DatePicker from "react-datepicker";
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
-import Config from '../../config/Config';
 import ConfigContext from '../../config/ConfigContext';
-import CreateOrderItemMutation from '../../graphql/mutations/CreateOrderItem';
-import DeleteOrderItemMutation from '../../graphql/mutations/DeleteOrderItem';
 import orderMutation from '../../graphql/mutations/CreateOrder';
 import './OrderForm.scss';
 
@@ -101,34 +98,25 @@ class OrderForm extends Component {
         });
     }
 
-    removeItem(item) {
-        this.state.order.items.forEach(async (savedItem, index) => {
-            if (savedItem.Title === item.Title && savedItem.Price === item.Price) {
-                if (savedItem.Qty > 1) {
-                    savedItem.Qty--;
-                    await this.alterOrderItem(
-                        { ID: savedItem.ID, OrderID: savedItem.OrderID, Title: savedItem.Title, Price: savedItem.Price, Qty: savedItem.Qty },
-                        CreateOrderItemMutation
-                    );
-                } else {
-                    await this.alterOrderItem(
-                        { ID: this.state.order.items[index].ID},
-                        DeleteOrderItemMutation
-                    )
-                    delete this.state.order.items[index];
-                }
+    async removeItem(item) {
+
+        let found = false;
+        let foundIndex = null;
+        this.state.order.items.forEach(async (i, index) => {
+            if (i.Title === item.Title && i.Price === item.Price) {
+                found = i;
+                foundIndex = index;
             }
         });
+
+        if (found.Qty > 1) {
+            found.Qty--;
+        } else {
+            delete this.state.order.items[foundIndex];
+        }
+
         this.setState({order: this.state.order});
         this.props.onChange(this.state.order);
-    }
-
-    async alterOrderItem(variables, mutation) {
-        const { data } = await Config.client.mutate({
-            mutation: mutation,
-            variables: variables
-        });
-        return data;
     }
 
     handleInputChange(event) {
@@ -144,7 +132,7 @@ class OrderForm extends Component {
         this.setState({order});
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         this.setState({error: ''});
         if (!this.state.order.items.length) {
@@ -152,29 +140,27 @@ class OrderForm extends Component {
             return;
         }
         this.setState({success: 'Sending...'});
-        this.props.mutate({
+        await this.props.mutate({
             variables: {
-                ID: this.state.order.ID,
+                ID: 0,
                 Email: this.state.order.Email,
                 Name: this.state.order.Name,
                 Phone: this.state.order.Phone,
                 PickUpTime: moment.parseZone(this.state.order.PickUpTime).format("dddd, MMMM Do YYYY, h:mm:ss a"),
                 Message: this.state.order.Message,
-                Status: 'CustomerConfirmed',
+                Status: 'CustomerCreatedConfirmed',
                 Total: this.state.order.Total, 
                 Tax: this.state.order.Tax,
                 Discount: this.state.order.Discount,
-                NetTotal: this.state.order.NetTotal
+                NetTotal: this.state.order.NetTotal,
+                OrderItems: JSON.stringify(this.state.order.items)
             }
-        })
-        .then(() => {
-            this.setState({success: 'Order placed.'});
-            const order = this.state.order;
-            order.ID = 0;
-            order.items = [];
-            this.props.onChange(order);
-        })
-        .catch(() => this.setState({error: 'Error placing order. Please try again later.'}));
+        });
+
+        this.setState({success: 'Order placed.'});
+        const order = this.state.order;
+        order.items = [];
+        this.props.onChange(order);
     }
 
     success() {
