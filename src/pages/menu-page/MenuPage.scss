@@ -1,0 +1,29 @@
+@import '../../config/SassVariables.scss';
+
+.menu-page {
+    .page-body {
+        max-width: 1200px;
+        margin: auto;
+        padding: 4rem 5.4rem;
+        h1 {
+            text-align: left;
+        }
+        .content {
+            text-align: left;
+        }
+        .order-section {
+            margin: 40px 0 0;
+            width: 100%;
+            display: grid;
+            grid-template-areas:
+            'menu form';
+            grid-gap: 1.8rem;
+            .menu { 
+                grid-area: menu;
+            }
+            .order-form { 
+                grid-area: form;
+            }
+        }
+    }
+}

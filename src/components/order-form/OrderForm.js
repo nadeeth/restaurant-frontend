@@ -26,7 +26,7 @@ class OrderForm extends Component {
         console.log(this.context);//TODO: remove this line
 
         return (
-            <div className="order">
+            <div className="order-form">
                 {this.renderOrderItems()}
                 <form onSubmit={this.handleSubmit} className="order-form">
                     <div className="info">

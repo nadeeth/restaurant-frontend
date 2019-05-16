@@ -44,11 +44,15 @@ class MenuPage extends Component {
         return (
             <div className="menu-page">
                 <PageBanner backgroundUrl={page.Banner.URL} bannerTitle={page.MenuTitle}></PageBanner>
-                <h1>{page.Title}</h1>
-                <div dangerouslySetInnerHTML={pageContent()} />
-                <OrderForm onChange={this.updateOrder} order={this.state.order} />
-                <div className="menu">
-                    {this.renderMenuItems(page.MenuItems.edges)}
+                <div className="page-body">
+                    <h1>{page.Title}</h1>
+                    <div className="content" dangerouslySetInnerHTML={pageContent()} />
+                    <div className="order-section">
+                        <div className="menu">
+                            {this.renderMenuItems(page.MenuItems.edges)}
+                        </div>
+                        <OrderForm onChange={this.updateOrder} order={this.state.order} />
+                    </div>
                 </div>
                 <Footer></Footer>
             </div>
