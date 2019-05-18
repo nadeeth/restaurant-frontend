@@ -5,6 +5,7 @@ import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import ConfigContext from '../../config/ConfigContext';
 import orderMutation from '../../graphql/mutations/CreateOrder';
+import removeIcon from '../../images/remove.svg';
 import './OrderForm.scss';
 
 class OrderForm extends Component {
@@ -28,13 +29,16 @@ class OrderForm extends Component {
         return (
             <div className="order-form">
                 {this.renderOrderItems()}
-                <form onSubmit={this.handleSubmit} className="order-form">
+                {this.orderTotal() > 0 && <div className="order-total">
+                    Total: {this.orderTotal()}<span></span>
+                </div>}
+                <form onSubmit={this.handleSubmit}>
                     <div className="info">
                         {this.success()}
                         {this.error()}
                     </div>
                     <div className="name">
-                        <label htmlFor="Name">Name</label>
+                        <label htmlFor="Name">Name*</label>
                         <input
                             name="Name"
                             id="Name"
@@ -44,7 +48,7 @@ class OrderForm extends Component {
                             onChange={this.handleInputChange} />
                     </div>
                     <div className="phone">
-                        <label htmlFor="Phone">Phone</label>
+                        <label htmlFor="Phone">Phone*</label>
                         <input
                             name="Phone"
                             id="Phone"
@@ -54,7 +58,7 @@ class OrderForm extends Component {
                             onChange={this.handleInputChange} />
                     </div>
                     <div className="email">
-                        <label htmlFor="Email">Email</label>
+                        <label htmlFor="Email">Email*</label>
                         <input
                             name="Email"
                             id="Email"
@@ -93,9 +97,24 @@ class OrderForm extends Component {
     renderOrderItems() {
         return this.state.order.items.map((item, index) => {
             return (
-                <div key={index}>{item.Title} : {item.Price} . {item.Qty} <span onClick={() => this.removeItem(item)}>-</span></div>
+                <div key={index} className="order-item">
+                    <div className="qty">{item.Qty}</div>
+                    <div className="title">{item.Title}</div>
+                    <div className="price">{item.Price}</div>
+                    <div className="remove">
+                        <img src={removeIcon} onClick={() => this.removeItem(item)} alt="remove" />
+                    </div>
+                </div>
             )
         });
+    }
+
+    orderTotal() {
+        let total = 0;
+        this.state.order.items.forEach((item) => {
+            total += item.Price * item.Qty;
+        });
+        return parseFloat(total).toFixed(2);
     }
 
     async removeItem(item) {
@@ -152,7 +171,7 @@ class OrderForm extends Component {
                 Total: this.state.order.Total, 
                 Tax: this.state.order.Tax,
                 Discount: this.state.order.Discount,
-                NetTotal: this.state.order.NetTotal,
+                NetTotal: this.orderTotal(),
                 OrderItems: JSON.stringify(this.state.order.items)
             }
         });

@@ -1,5 +1,50 @@
 @import '../../config/SassVariables.scss';
 
 .menu-item {
-
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+    'description description description image'
+    'action action action action';
+    grid-gap: 1.6rem;
+    margin-bottom: 1.4rem;
+    border: 0.5px solid #EEE;
+    padding: 12px;
+    box-shadow: -2px 2px 5px -1px rgba(0,0,0,0.4);
+    .description { 
+        grid-area: description;
+        h5 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+    }
+    .image { 
+        grid-area: image;
+        img {
+            width: 100%;
+            max-width: 200px;
+            float: right;
+        }
+    }
+    .action {
+        grid-area: action;
+        span {
+            float: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 6px;
+        }
+        button {
+            float: right;
+            padding: 8px;
+            // border-radius: 8px;
+            border: none;
+            background-color: $secondary_color;
+            color: $primary_color;
+            width: 80px;
+            font-weight: 600;
+            font-size: .8rem;
+        }
+    }
 }

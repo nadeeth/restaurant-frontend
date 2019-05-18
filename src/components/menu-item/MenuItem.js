@@ -17,12 +17,19 @@ class MenuItem extends Component {
 
         return (
             <div className="menu-item">
-                <h5>{item.Title}</h5>
-                <p>{item.Description}</p>
-                <span>{item.Price}</span><span onClick={() => this.addItem(item)}>+</span>
-                {item.Image.URL && 
-                <img src={Config.assetsBaseUrl + item.Image.URL} alt={item.Title} />
-                }
+                <div className="description">
+                    <h5>{item.Title}</h5>
+                    <p>{item.Description}</p>
+                </div>
+                <div className="image">
+                    {item.Image.URL && 
+                    <img src={Config.assetsBaseUrl + item.Image.URL} alt={item.Title} />
+                    }
+                </div>
+                <div className="action">
+                    <span className="price">{item.Price}</span>
+                    <button onClick={() => this.addItem(item)}>Add +</button>
+                </div>
             </div>
         );
     }
