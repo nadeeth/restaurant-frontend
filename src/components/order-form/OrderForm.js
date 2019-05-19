@@ -28,68 +28,70 @@ class OrderForm extends Component {
 
         return (
             <div className="order-form">
-                {this.renderOrderItems()}
-                {this.orderTotal() > 0 && <div className="order-total">
-                    Total: {this.orderTotal()}<span></span>
-                </div>}
-                <form onSubmit={this.handleSubmit}>
-                    <div className="info">
-                        {this.success()}
-                        {this.error()}
-                    </div>
-                    <div className="name">
-                        <label htmlFor="Name">Name*</label>
-                        <input
-                            name="Name"
-                            id="Name"
-                            type="text"
-                            required
-                            value={this.state.order.Name}
-                            onChange={this.handleInputChange} />
-                    </div>
-                    <div className="phone">
-                        <label htmlFor="Phone">Phone*</label>
-                        <input
-                            name="Phone"
-                            id="Phone"
-                            type="tel"
-                            required
-                            value={this.state.order.Phone}
-                            onChange={this.handleInputChange} />
-                    </div>
-                    <div className="email">
-                        <label htmlFor="Email">Email*</label>
-                        <input
-                            name="Email"
-                            id="Email"
-                            type="email"
-                            required
-                            value={this.state.order.Email}
-                            onChange={this.handleInputChange} />
-                    </div>
-                    <div className="pickup-time">
-                        <label htmlFor="PickUpTime">Pick up time</label>
-                        <DatePicker
-                            name="PickUpTime"
-                            id="PickUpTime"
-                            selected={this.state.order.PickUpTime}
-                            onChange={this.handleDateChange}
-                            showTimeSelect
-                            timeFormat="h:mm aa"
-                            dateFormat="MMMM d, yyyy h:mm aa"
-                            minDate={new Date()}
-                            withPortal
-                            placeholderText="Click to select pickup time"
-                        />
-                    </div>
-                    <div className="message">
-                        <label htmlFor="Message">Messege</label>
-                        <textarea name="Message" id="Message" value={this.state.order.Message} onChange={this.handleInputChange} />
-                    </div>
-                    <div className="action">
-                        <input type="submit" value="Confirm Order" />
-                    </div>
-                </form>
+                <div className="card">
+                    {this.renderOrderItems()}
+                    {this.orderTotal() > 0 && <div className="order-total">
+                        Total: {this.orderTotal()}<span></span>
+                    </div>}
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="info">
+                            {this.success()}
+                            {this.error()}
+                        </div>
+                        <div className="name">
+                            <label htmlFor="Name">Name*</label>
+                            <input
+                                name="Name"
+                                id="Name"
+                                type="text"
+                                required
+                                value={this.state.order.Name}
+                                onChange={this.handleInputChange} />
+                        </div>
+                        <div className="phone">
+                            <label htmlFor="Phone">Phone*</label>
+                            <input
+                                name="Phone"
+                                id="Phone"
+                                type="tel"
+                                required
+                                value={this.state.order.Phone}
+                                onChange={this.handleInputChange} />
+                        </div>
+                        <div className="email">
+                            <label htmlFor="Email">Email*</label>
+                            <input
+                                name="Email"
+                                id="Email"
+                                type="email"
+                                required
+                                value={this.state.order.Email}
+                                onChange={this.handleInputChange} />
+                        </div>
+                        <div className="pickup-time">
+                            <label htmlFor="PickUpTime">Pick up time</label>
+                            <DatePicker
+                                name="PickUpTime"
+                                id="PickUpTime"
+                                selected={this.state.order.PickUpTime}
+                                onChange={this.handleDateChange}
+                                showTimeSelect
+                                timeFormat="h:mm aa"
+                                dateFormat="MMMM d, yyyy h:mm aa"
+                                minDate={new Date()}
+                                withPortal
+                                placeholderText="Click to select pickup time"
+                            />
+                        </div>
+                        <div className="message">
+                            <label htmlFor="Message">Messege</label>
+                            <textarea name="Message" id="Message" value={this.state.order.Message} onChange={this.handleInputChange} />
+                        </div>
+                        <div className="action">
+                            <input type="submit" value="Confirm Order" />
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     }

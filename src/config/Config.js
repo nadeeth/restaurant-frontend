@@ -4,11 +4,13 @@ import HomePage from '../pages/home-page/HomePage';
 import ContactPage from '../pages/contact-page/ContactPage';
 import MenuPage from '../pages/menu-page/MenuPage';
 
+const apiBaseUrl = 'http://localhost:8100';
+
 const Config = {
     client: new ApolloClient({
-        uri: 'http://localhost:8100/graphql'
+        uri: apiBaseUrl + '/graphql'
     }),
-    assetsBaseUrl : 'http://localhost:8100',
+    assetsBaseUrl : apiBaseUrl,
     pages : {
         Page,
         HomePage,
