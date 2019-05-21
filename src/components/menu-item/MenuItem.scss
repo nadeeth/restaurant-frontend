@@ -48,3 +48,18 @@
         }
     }
 }
+
+@media screen and (max-width: 550px) {
+    .menu-item {
+        grid-template-areas:
+        'image'
+        'description'
+        'action';
+        .image { 
+            width: 100%;
+            img {
+                max-width: none;
+            }
+        }
+    }
+}

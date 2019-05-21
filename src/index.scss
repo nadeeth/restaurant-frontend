@@ -39,4 +39,7 @@ h1 {
   .page-body {
     padding: 4rem 1.2rem;
   }
+  html {
+    font-size: $root_font_size_mobile_768;
+  }
 }

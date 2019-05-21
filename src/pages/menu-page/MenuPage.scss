@@ -24,3 +24,21 @@
         }
     }
 }
+
+@media screen and (max-width: 550px) {
+    .menu-page {
+        .page-body {
+            .order-section {
+                grid-template-areas:
+                'form'
+                'menu';
+                .menu { 
+                    width: 100%;
+                }
+                .order-form { 
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
