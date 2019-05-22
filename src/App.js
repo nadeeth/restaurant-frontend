@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { graphql } from "react-apollo";
 import Config from "./config/Config";
 import ConfigContext from "./config/ConfigContext";

@@ -123,7 +123,8 @@ class OrderForm extends Component {
 
         let found = false;
         let foundIndex = null;
-        this.state.order.items.forEach(async (i, index) => {
+        let order = this.state.order;
+        order.items.forEach(async (i, index) => {
             if (i.Title === item.Title && i.Price === item.Price) {
                 found = i;
                 foundIndex = index;
@@ -133,10 +134,12 @@ class OrderForm extends Component {
         if (found.Qty > 1) {
             found.Qty--;
         } else {
-            delete this.state.order.items[foundIndex];
+            order.items = order.items.filter((i, index) => {
+                return index !== foundIndex;
+            });
         }
 
-        this.setState({order: this.state.order});
+        this.setState({order}); 
         this.props.onChange(this.state.order);
     }
 
@@ -156,6 +159,7 @@ class OrderForm extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         this.setState({error: ''});
+        this.setState({success: ''});
         if (!this.state.order.items.length) {
             this.setState({error: 'Please add some menu items to your order.'});
             return;
@@ -179,6 +183,7 @@ class OrderForm extends Component {
         });
 
         this.setState({success: 'Order placed.'});
+        this.setState({error: ''});
         const order = this.state.order;
         order.items = [];
         this.props.onChange(order);
