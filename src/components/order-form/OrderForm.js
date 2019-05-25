@@ -15,7 +15,8 @@ class OrderForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            order: this.props.order
+            order: this.props.order,
+            isOrderConfirmationInProgress: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -88,7 +89,7 @@ class OrderForm extends Component {
                             <textarea name="Message" id="Message" value={this.state.order.Message} onChange={this.handleInputChange} />
                         </div>
                         <div className="action">
-                            <input type="submit" value="Confirm Order" />
+                            <input disabled={this.state.isOrderConfirmationInProgress} type="submit" value="Confirm Order" />
                         </div>
                     </form>
                 </div>
@@ -164,7 +165,10 @@ class OrderForm extends Component {
             this.setState({error: 'Please add some menu items to your order.'});
             return;
         }
-        this.setState({success: 'Sending...'});
+        this.setState({
+            success: 'Sending...',
+            isOrderConfirmationInProgress: true
+        });
         await this.props.mutate({
             variables: {
                 ID: 0,
@@ -182,8 +186,11 @@ class OrderForm extends Component {
             }
         });
 
-        this.setState({success: 'Order placed.'});
-        this.setState({error: ''});
+        this.setState({
+            success: 'Order placed.',
+            error: '',
+            isOrderConfirmationInProgress: false
+        });
         const order = this.state.order;
         order.items = [];
         this.props.onChange(order);
