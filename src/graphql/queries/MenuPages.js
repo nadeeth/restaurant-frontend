@@ -19,6 +19,10 @@ const query = gql`
                         Image {
                             URL
                         }
+                        Category {
+                            ID
+                            Title
+                        }
                     }
                 }
             }

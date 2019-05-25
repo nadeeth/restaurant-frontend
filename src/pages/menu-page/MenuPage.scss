@@ -13,6 +13,7 @@
             width: 100%;
             display: grid;
             grid-template-areas:
+            'categories categories'
             'menu form';
             grid-gap: 1.8rem;
             .menu { 
@@ -20,6 +21,15 @@
             }
             .order-form { 
                 grid-area: form;
+            }
+            .categories {
+                grid-area: categories;
+                width: 100%;
+                .category {
+                    float: left;
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+                }
             }
         }
     }
@@ -31,11 +41,15 @@
             .order-section {
                 grid-template-areas:
                 'form'
+                'categories'
                 'menu';
                 .menu { 
                     width: 100%;
                 }
                 .order-form { 
+                    width: 100%;
+                }
+                .categories {
                     width: 100%;
                 }
             }

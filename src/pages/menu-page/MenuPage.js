@@ -26,10 +26,12 @@ class MenuPage extends Component {
                 Discount: null,
                 NetTotal: null,
                 items: []
-            }
+            },
+            selectedCategories: []
         }
 
         this.updateOrder = this.updateOrder.bind(this);
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
     }
 
     render() {
@@ -52,6 +54,9 @@ class MenuPage extends Component {
                             {this.renderMenuItems(page.MenuItems.edges)}
                         </div>
                         <OrderForm onChange={this.updateOrder} order={this.state.order} />
+                        <div className="categories">
+                            {this.renderCategories(page.MenuItems.edges)}
+                        </div>
                     </div>
                 </div>
                 <Footer></Footer>
@@ -63,9 +68,42 @@ class MenuPage extends Component {
         const itemsJsx = [];
         Object.keys(items).forEach(key => {
             const item = items[key].node;
-            itemsJsx.push(
-                <MenuItem onChange={this.updateOrder} item={item} order={this.state.order} key={item.ID} />
-            );
+            if (!this.state.selectedCategories.length || this.state.selectedCategories.indexOf(item.Category.Title) !== -1) {
+                itemsJsx.push(
+                    <MenuItem onChange={this.updateOrder} item={item} order={this.state.order} key={item.ID} />
+                );
+            }
+        });
+        return itemsJsx;
+    }
+
+    handleCategoryChange(event) {
+        let categories = this.state.selectedCategories;
+        if (event.target.checked) {
+            categories.push(event.target.value);
+        } else {
+            categories = categories.filter((category) => {
+                return category !== event.target.value;
+            });
+        }
+        this.setState({selectedCategories: categories});
+    }
+
+    renderCategories(items) {
+        let unique_categories = [];
+        const itemsJsx = [];
+        Object.keys(items).forEach(key => {
+            const item = items[key].node;
+            if (unique_categories.indexOf(item.Category.Title) === -1) {
+                itemsJsx.push(
+                    <div className="category" key={item.ID}>
+                        <label for>{item.Category.Title}
+                            <input type="checkbox" value={item.Category.Title} onChange={this.handleCategoryChange} />
+                        </label>
+                    </div>
+                );
+            }
+            unique_categories.push(item.Category.Title);
         });
         return itemsJsx;
     }
