@@ -97,9 +97,8 @@ class MenuPage extends Component {
             if (unique_categories.indexOf(item.Category.Title) === -1) {
                 itemsJsx.push(
                     <div className="category" key={item.ID}>
-                        <label for>{item.Category.Title}
-                            <input type="checkbox" value={item.Category.Title} onChange={this.handleCategoryChange} />
-                        </label>
+                        <input id={item.ID} type="checkbox" value={item.Category.Title} onChange={this.handleCategoryChange} />
+                        <label htmlFor={item.ID}>{item.Category.Title}</label>
                     </div>
                 );
             }

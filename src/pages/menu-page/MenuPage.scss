@@ -27,8 +27,27 @@
                 width: 100%;
                 .category {
                     float: left;
-                    margin-right: 10px;
-                    margin-bottom: 10px;
+                    margin: 0 1rem 1rem 0;
+                    box-shadow: -2px 2px 5px -1px rgba(0,0,0,0.4);
+                    border: 0.5px solid #EEE;
+                    height: 2.5rem;
+                    input {
+                        margin-left: .6rem;
+                        position: absolute;
+                        display: none;
+                        &:checked + label {
+                            background-image: url('../../images/check-circle-outline.svg');
+                        }
+                    }
+                    label {
+                        padding: .7rem 1rem 1rem 2rem;
+                        height: 2.5rem;
+                        width: 100%;
+                        display: inline-block;
+                        background-image: url('../../images/check-circle-outline-blank.svg');
+                        background-repeat: no-repeat;
+                        background-position: .5rem center;
+                    }
                 }
             }
         }
