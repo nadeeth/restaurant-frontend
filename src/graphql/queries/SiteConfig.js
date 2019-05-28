@@ -11,6 +11,8 @@ const query = gql`
             OrderTax
             OrderDiscount
             FooterText
+            OpenTime
+            CloseTime
             Facebook
             Instagram
             Twitter

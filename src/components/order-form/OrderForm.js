@@ -16,11 +16,32 @@ class OrderForm extends Component {
         super(props);
         this.state = {
             order: this.props.order,
-            isOrderConfirmationInProgress: false
+            isOrderConfirmationInProgress: false,
+            openTime: null,
+            closeTime: null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.setOpenCloseTime();
+    }
+
+    setOpenCloseTime() {
+        if (this.context.OpenTime && this.context.CloseTime) {
+
+            let closeTime = new Date();
+            closeTime.setHours(this.context.CloseTime.split(":")[0]);
+            closeTime.setMinutes(this.context.CloseTime.split(":")[1]);
+            this.setState({closeTime});
+
+            let openTime = new Date();
+            openTime.setHours(this.context.OpenTime.split(":")[0]);
+            openTime.setMinutes(this.context.OpenTime.split(":")[1]);
+            this.setState({openTime});
+        }
     }
 
     render() {
@@ -82,6 +103,8 @@ class OrderForm extends Component {
                                 minDate={new Date()}
                                 withPortal
                                 placeholderText="Click to select pickup time"
+                                minTime={this.state.openTime}
+                                maxTime={this.state.closeTime}
                             />
                         </div>
                         <div className="message">
@@ -151,7 +174,6 @@ class OrderForm extends Component {
     }
 
     handleDateChange(date) {
-        console.log(moment.parseZone(date).format("dddd, MMMM Do YYYY, h:mm:ss a"));
         const order = this.state.order;
         order.PickUpTime = date;
         this.setState({order});
