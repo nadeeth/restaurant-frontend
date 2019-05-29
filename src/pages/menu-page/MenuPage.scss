@@ -21,6 +21,7 @@
             }
             .order-form { 
                 grid-area: form;
+                max-width: 200px;
             }
             .categories {
                 grid-area: categories;
@@ -67,6 +68,7 @@
                 }
                 .order-form { 
                     width: 100%;
+                    max-width: none;
                 }
                 .categories {
                     width: 100%;

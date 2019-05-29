@@ -18,7 +18,8 @@ class OrderForm extends Component {
             order: this.props.order,
             isOrderConfirmationInProgress: false,
             openTime: null,
-            closeTime: null
+            closeTime: null,
+            pickupTimeMessage: null
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -106,6 +107,9 @@ class OrderForm extends Component {
                                 minTime={this.state.openTime}
                                 maxTime={this.state.closeTime}
                             />
+                            { this.state.pickupTimeMessage && 
+                                <span className="pickup-time-message">We consider you are expecting to collect your order as soon as possible, when you select a time below the current time.</span>
+                            }
                         </div>
                         <div className="message">
                             <label htmlFor="Message">Messege</label>
@@ -176,7 +180,8 @@ class OrderForm extends Component {
     handleDateChange(date) {
         const order = this.state.order;
         order.PickUpTime = date;
-        this.setState({order});
+        const pickupTimeMessage = moment().isAfter(moment.parseZone(date)) ? true :false;
+        this.setState({order, pickupTimeMessage});
     }
 
     async handleSubmit(event) {
